@@ -28,7 +28,7 @@ def config_ints():
     ints = acquire_ints()
     satisfied = False
     while not satisfied:
-        print('Welcome to Interface Configuration!\nWhich interface would you like to mess with?')
+        print('\n\n-------------------------\nWelcome to Interface Configuration!\nWhich interface would you like to mess with?')
         
         print_ints(ints)
         
