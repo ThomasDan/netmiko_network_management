@@ -2,7 +2,7 @@ from netmiko import ConnectHandler
 
 cisco_881 = {
     'device_type': 'cisco_ios',
-    'host': '10.10.1.1',
+    'host': '10.10.10.1',
     'username': 'cisco',
     'password': 'cisco',
     'port': 22,
