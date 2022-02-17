@@ -2,6 +2,8 @@ from Connection_Manager import disconnect
 from Interface_Management import config_ints
 from TestFolder.General_Management import config_hostname, config_motd, show_ints
 from snmp_mib_handling.Mikkel_Mib import mikkel_mac_address_get
+from mib_control import get, get_time
+import datetime
 
 
 def user_select(user_input):
@@ -15,6 +17,9 @@ def user_select(user_input):
         config_ints()
     elif user_input == 5:
         mikkel_mac_address_get()
+    elif user_input == 6:
+        up_time = get_time()
+        print(up_time)
     else:
         print("Stopping Program!")
         return True
@@ -26,7 +31,7 @@ def start():
     while not done:
         #config_sender(reset_ssh_commands)
         
-        print("\n\nHallo what do you want to do today?\nPress 1: Set hostname. 2: Motd. 3: See interfaces. 4: Configure Interfaces. 5: See Mac Addresses in Network.")
+        print("\n\nHallo what do you want to do today?\n\n 1: Set hostname.\n 2: Motd.\n 3: See interfaces.\n 4: Configure Interfaces.\n 5: See Mac Addresses in Network.\n 6: See Up-Time")
         user_input = int(input())
         done = user_select(user_input)
     disconnect()

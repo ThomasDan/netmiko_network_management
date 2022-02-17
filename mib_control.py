@@ -1,9 +1,18 @@
 ﻿from pysnmp import hlapi
 from pysnmp.smi import builder
+import datetime
 
 hlapi.CommunityData('ciscolab')
 
-def get(target, oids, credentials, port=161, engine=hlapi.SnmpEngine(), context=hlapi.ContextData()):
+def get_time():
+    up_time = get(['1.3.6.1.2.1.1.3.0'])
+    up_time = up_time.get('1.3.6.1.2.1.1.3.0')
+    seconds = up_time/100
+    td_str = str(datetime.timedelta(seconds=seconds))
+    x = td_str.split(':')
+    return x[0], 'Hours', x[1], 'Minutes', x[2].split('.', 2)[0], 'Seconds'
+
+def get(oids, target = '10.10.1.1', credentials = hlapi.CommunityData('ciscolab'), port=161, engine=hlapi.SnmpEngine(), context=hlapi.ContextData()):
     handler = hlapi.getCmd(
         engine,
         credentials,
