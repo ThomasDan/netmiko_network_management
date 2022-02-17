@@ -1,5 +1,4 @@
 from pysnmp import hlapi
-from pysnmp.hlapi import OctetString, IpAddress
 
 #Credentials, for the get() for example
 #hlapi.CommunityData('ICTSHORE')
@@ -91,12 +90,7 @@ print(its)
 
 for it in its:
     for k, v in it.items():
-        
-        if(v[:4] == '\n\n'):
-            v = v[4:]
-        octstr = OctetString(hexValue=v)
-        
-        print("{0}={1}".format(k,v)) #IpAddress(octstr.asOctets()).prettyPrint()
+        print("{0}={1}".format(k,v))
     print('')
     
     
