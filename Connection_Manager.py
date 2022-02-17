@@ -9,7 +9,6 @@ cisco_881 = {
     'secret': ''
     }
 
-
 net_connect = ConnectHandler(**cisco_881)
 
 def command_sender(command):

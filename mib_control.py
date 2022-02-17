@@ -13,8 +13,6 @@ def get(target, oids, credentials, port=161, engine=hlapi.SnmpEngine(), context=
     )
     return fetch(handler, 1)[0]
 
-
-
 def fetch(handler, count):
     result = []
     for i in range(count):
@@ -68,4 +66,3 @@ def get_bulk_auto(target, oids, credentials, count_oid, start_from=0, port=161,
     return get_bulk(target, oids, credentials, count, start_from, port, engine, context)
 
 
-print(get('10.10.1.1', ['1.3.6.1.2.1.1.5.0'], hlapi.CommunityData('ciscolab')))
