@@ -3,7 +3,8 @@ from Interface_Management import config_ints
 from TestFolder.General_Management import config_hostname, config_motd, show_ints
 from snmp_mib_handling.Mikkel_Mib import mikkel_mac_address_get
 from mib_control import get, get_time
-import datetime
+from pydub import AudioSegment
+from pydub.playback import play
 
 
 def user_select(user_input):
@@ -30,6 +31,8 @@ def start():
     #reset_ssh_commands = [ 'exit', 'clear line vty 2', '', 'clear line vty 3', '', 'clear line vty 4', '' ]
     while not done:
         #config_sender(reset_ssh_commands)
+        song = AudioSegment.from_mp3('notice.mp3')
+        play(song)
         print("\n\nHallo what do you want to do today?\nPress 1: Set Hostname. 2: Set Motd. 3: See Interfaces. 4: Configure Interface IPs. 5: See Mac Addresses in Network.")
 
         user_input = int(input())
