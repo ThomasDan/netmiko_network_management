@@ -26,7 +26,7 @@ def start():
     while not done:
         #config_sender(reset_ssh_commands)
         
-        print("\n\nHallo what do you want to do today?\nPress 1: Set hostname. 2: Motd. 3: See interfaces. 4: Configure Interfaces. 5: See Mac Addresses in Network.")
+        print("\n\nHallo what do you want to do today?\nPress 1: Set Hostname. 2: Set Motd. 3: See Interfaces. 4: Configure Interface IPs. 5: See Mac Addresses in Network.")
         user_input = int(input())
         done = user_select(user_input)
     disconnect()
