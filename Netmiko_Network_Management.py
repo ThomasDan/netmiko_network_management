@@ -35,7 +35,7 @@ def start():
     
     while not done:
         
-        print("\n\nHallo what do you want to do today?\n\n 1: Set hostname.\n 2: Motd.\n 3: See interfaces.\n 4: Configure Interfaces.\n 5: See Mac Addresses in Network.\n 6: See Up-Time\n 7: MIB_Interfaces\n 8: Reset SSH Connections")
+        print("\n\nHallo what do you want to do today?\n\n 1: Set hostname.\n 2: Motd.\n 3: See interfaces.\n 4: Configure Interfaces.\n 5: See Mac Addresses in Network.\n 6: See Up-Time\n 7: MIB_Interfaces\n 8: Reset SSH Connections\n 9: Show SSH Connections\n 0: End Program")
         user_input = int(input())
         done = user_select(user_input)
     disconnect()
