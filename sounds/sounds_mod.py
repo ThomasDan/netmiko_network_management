@@ -21,6 +21,6 @@ def pydub_play_wav(filename):
     play(song)
 
 
-play('notice.mp3')
-pydub_play_mp3('notice.mp3')
+#playsound_play('notice.mp3')
+#pydub_play_mp3('notice.mp3')
 pydub_play_wav('alert.wav')
