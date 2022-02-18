@@ -1,4 +1,4 @@
-from Connection_Manager import disconnect, reset_ssh_connections
+from Connection_Manager import disconnect, reset_ssh_connections, show_ssh
 from Interface_Management import config_ints
 from TestFolder.General_Management import config_hostname, config_motd, show_ints
 from snmp_mib_handling.Mikkel_Mib import mikkel_mac_address_get
@@ -23,6 +23,8 @@ def user_select(user_input):
         get_int_bulk_result()
     elif user_input == 8:
         reset_ssh_connections()
+    elif user_input == 9:
+        show_ssh()
     else:
         print("Stopping Program!")
         return True
