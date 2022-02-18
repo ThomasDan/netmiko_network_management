@@ -74,11 +74,21 @@ def get_int_bulk_result():
         '10.10.1.1', ['1.3.6.1.2.1.2.2.1.8'],
         hlapi.CommunityData('ciscolab'), '1.3.6.1.2.1.2.1.0')
 
+
     for it in its:
             for k, v in it.items():
-                print("{0}={1}".format(k,v))
+                if v == 1:
+                    v = 'up'
+                elif v == 2:
+                    v = 'down'
+                else:
+                    v = 'unknown'
+
+                print("{0} = {1}".format(k,v))
+
             print('')
-    
+
+
 #print(get('10.10.1.1', ['1.3.6.1.2.1.1.5.0'], hlapi.CommunityData('ciscolab')))
 #print(get('10.10.1.1', ['1.3.6.1.2.1.3.1.1.1'], hlapi.CommunityData('ciscolab')))
 
