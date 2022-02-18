@@ -2,8 +2,7 @@ from Connection_Manager import disconnect
 from Interface_Management import config_ints
 from TestFolder.General_Management import config_hostname, config_motd, show_ints
 from snmp_mib_handling.Mikkel_Mib import mikkel_mac_address_get
-from snmp_mib_handling.mib_control import get, get_time, get_bulk_auto_int_up_or_down
-from snmp_mib_handling.SNMP_MIB_Handler import get_int_bulk_result
+from snmp_mib_handling.SNMP_MIB_Handler import get_int_bulk_result, get_time
 
 
 def user_select(user_input):
