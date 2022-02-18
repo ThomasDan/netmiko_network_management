@@ -70,7 +70,7 @@ def cast(value):
     return value
     
     
-    
+
     
 #print(get('10.10.1.1', ['1.3.6.1.2.1.1.5.0'], hlapi.CommunityData('ciscolab')))
 #print(get('10.10.1.1', ['1.3.6.1.2.1.3.1.1.1'], hlapi.CommunityData('ciscolab')))

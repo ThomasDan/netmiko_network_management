@@ -8,8 +8,8 @@ cisco_881 = {
     'port': 22,
     'secret': ''
     }
-
 net_connect = ConnectHandler(**cisco_881)
+
 
 def command_sender(command):
     try:
@@ -25,3 +25,14 @@ def config_sender(commands):
 
 def disconnect():
     net_connect.disconnect()
+
+
+def reset_ssh_connections():
+    #net_connect.exit_config_mode()
+    for i in range(5):
+        try:
+            print('Clearing ssh line ' + str(i))
+            net_connect.send_command('clear line vty ' + str(i))
+        except:
+            print('Unable to close ssh line ' + str(i))
+            # err :D
