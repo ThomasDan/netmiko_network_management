@@ -1,8 +1,5 @@
 from pysnmp import hlapi
-
-#Credentials, for the get() for example
-#hlapi.CommunityData('ICTSHORE')
-
+import datetime
 
 def get(target, oids, credentials, port=161, engine = hlapi.SnmpEngine(),context=hlapi.ContextData()):
     handler = hlapi.getCmd(
@@ -13,7 +10,6 @@ def get(target, oids, credentials, port=161, engine = hlapi.SnmpEngine(),context
         *construct_object_types(oids)
         )
     return fetch(handler, 1)[0]
-
 
 def get_bulk(target, oids, credentials, count, start_from=0, port = 161, engine=hlapi.SnmpEngine(), context=hlapi.ContextData()):
     handler = hlapi.bulkCmd(
@@ -26,18 +22,15 @@ def get_bulk(target, oids, credentials, count, start_from=0, port = 161, engine=
         )
     return fetch(handler, count)
 
-
 def get_bulk_auto(target, oids, credentials, count_oid, start_from=0, port = 161, engine=hlapi.SnmpEngine(), context=hlapi.ContextData()):
     count = get(target, [count_oid], credentials, port, engine, context)[count_oid]
     return get_bulk(target, oids, credentials, count, start_from, port, engine, context)
-
 
 def construct_object_types(list_of_oids):
     object_types = []
     for oid in list_of_oids:
         object_types.append(hlapi.ObjectType(hlapi.ObjectIdentity(oid)))
     return object_types
-
 
 def fetch(handler, count):
     result = []
@@ -55,7 +48,6 @@ def fetch(handler, count):
             break
     return result
 
-
 def cast(value):
     try:
         return int(value)
@@ -69,8 +61,23 @@ def cast(value):
                 pass
     return value
     
-    
+def get_time():
+    up_time = get('10.10.1.1', ['1.3.6.1.2.1.1.3.0'], hlapi.CommunityData('ciscolab'))
+    up_time = up_time.get('1.3.6.1.2.1.1.3.0')
+    seconds = up_time/100
+    td_str = str(datetime.timedelta(seconds=seconds))
+    x = td_str.split(':')
+    return x[0], 'Hours', x[1], 'Minutes', x[2].split('.', 2)[0], 'Seconds'
 
+def get_int_bulk_result():
+    its = get_bulk_auto(
+        '10.10.1.1', ['1.3.6.1.2.1.2.2.1.8'],
+        hlapi.CommunityData('ciscolab'), '1.3.6.1.2.1.2.1.0')
+
+    for it in its:
+            for k, v in it.items():
+                print("{0}={1}".format(k,v))
+            print('')
     
 #print(get('10.10.1.1', ['1.3.6.1.2.1.1.5.0'], hlapi.CommunityData('ciscolab')))
 #print(get('10.10.1.1', ['1.3.6.1.2.1.3.1.1.1'], hlapi.CommunityData('ciscolab')))
@@ -82,16 +89,7 @@ def cast(value):
 #print(its)
 
 
-its = get_bulk_auto(
-    '10.10.1.1', ['1.3.6.1.2.1.3.1.1.3'], # '1.3.6.1.2.1.2.2.1.2' ,'1.3.6.1.2.1.31.1.1.1.18' 
-    hlapi.CommunityData('ciscolab'), '1.3.6.1.2.1.2.1.0')#1.3.6.1.2.1.2.1.0
-
-print(its)
-
-for it in its:
-    for k, v in it.items():
-        print("{0}={1}".format(k,v))
-    print('')
+#its = get_bulk_auto('10.10.1.1', ['1.3.6.1.2.1.3.1.1.3'], # '1.3.6.1.2.1.2.2.1.2' ,'1.3.6.1.2.1.31.1.1.1.18') hlapi.CommunityData('ciscolab'), '1.3.6.1.2.1.2.1.0')#1.3.6.1.2.1.2.1.0
     
     
     

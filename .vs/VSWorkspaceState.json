@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\snmp_mib_handling",
     "\\TestFolder"
   ],
-  "SelectedNode": "\\__pycache__",
+  "SelectedNode": "\\snmp_mib_handling\\mib_control.py",
   "PreviewInSolutionExplorer": false
 }
