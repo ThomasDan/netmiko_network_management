@@ -28,20 +28,35 @@ def disconnect():
 
 
 def reset_ssh_connections():
-    #net_connect.exit_config_mode()
     
     cmds = ['end']
+    # Here we find out which vty lines (SSH) are open
+    raw_ssh_connections = command_sender('show ssh').splitlines()
+    open_lines = []
+    for line in raw_ssh_connections:
+        try:
+            #If the first character in the lien can be converted to an int..
+            v = int(line[0][:1])
+            line_already = False
+            # And is not already set for closing..
+            for line_ in open_lines:
+                if v == line_:
+                    line_already = True
+                    break
+            if not line_already:
+                # Add to open_lines to be clsoed
+                open_lines.append(v)
+        except:
+            b = 1 #No exception required, the int conversion is supposed to fail sometimes
     
     net_connect.enable()
-    for i in range(5):
+    for i in open_lines:
         try:
             print('Clearing ssh line ' + str(i))
             net_connect.send_command('clear line vty ' + str(i))
             
         except:
             print('Unable to close ssh line ' + str(i))
-            # err :D
-    #net_connect.send_config_set(cmds)
 
 def show_ssh():
     print(net_connect.send_command('show ssh'))
