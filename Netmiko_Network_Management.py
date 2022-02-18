@@ -19,12 +19,10 @@ def user_select(user_input):
     elif user_input == 6:
         up_time = get_time()
         print(up_time)
-        
-        
-    elif user_input == 8:
-        reset_ssh_connections()
     elif user_input == 7:
         get_int_bulk_result()
+    elif user_input == 8:
+        reset_ssh_connections()
     else:
         print("Stopping Program!")
         return True
@@ -35,7 +33,7 @@ def start():
     
     while not done:
         
-        print("\n\nHallo what do you want to do today?\n\n 1: Set hostname.\n 2: Motd.\n 3: See interfaces.\n 4: Configure Interfaces.\n 5: See Mac Addresses in Network.\n 6: See Up-Time\n 7: MIB_Interfaces")
+        print("\n\nHallo what do you want to do today?\n\n 1: Set hostname.\n 2: Motd.\n 3: See interfaces.\n 4: Configure Interfaces.\n 5: See Mac Addresses in Network.\n 6: See Up-Time\n 7: MIB_Interfaces\n 8: Reset SSH Connections")
         user_input = int(input())
         done = user_select(user_input)
     disconnect()
